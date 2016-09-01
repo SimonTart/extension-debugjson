@@ -13,13 +13,18 @@ chrome.runtime.onInstalled.addListener(function () {
 
 //debug json in current window
 function debugThisWindow(tab) {
-  //openDebugPage(tab);
+  chrome.tabs.update(tab.id,{
+    url: urlUtils.getDebugUrl(tab.url, PARAMETERS)
+  });
 }
 
 //debug json in new window
 function debugNewWindow(tab) {
-  console.log(urlUtils.getDebugUrl(tab.url, PARAMETERS));
-  //openDebugPage(tab);
+  chrome.tabs.create({
+    index: tab.index +1,
+    url: urlUtils.getDebugUrl(tab.url, PARAMETERS),
+    active:true
+  });
 }
 
 var urlUtils = {
@@ -46,7 +51,7 @@ var urlUtils = {
     url = url.replace(/^https?:\/\/(?:\w+\.)?\w+\.\w+(\/)$/g, function (match, $1, offset, url) {
       return url.slice(0, url.length - 1);
     });
-
+    // is has parameter
     if (new RegExp(/\?[^#]*/.source + parameter, "g").test(url)) {
       return url;
     }
@@ -62,7 +67,8 @@ var urlUtils = {
         url = url.join("");
       }
     }
-    console.log(url);
+
+    // add parameter
     return url.replace(/\?([^#]*)(#?)/g, function (match, $1, $2, offset, url) {
       if ($1 === "") {
         return "?" + $1 + parameter + $2;
@@ -70,7 +76,21 @@ var urlUtils = {
         return "?" + $1 + "&" + parameter + $2;
       }
     });
-
+  },
+  removeUrlParameters:function(url,parameters){
+    var me = this;
+    url = parameters.reduce(function(preUrl,parameter){
+          return me.removeUrlParameter(preUrl,parameter);
+        },url);
+    if(/\?([^#]*)/g.exec(url)[1] === ""){
+      return url.replace("?","");
+    }else{
+      return url;
+    }
+  },
+  removeUrlParameter:function(url,parameter){
+    var regExp = new RegExp("&?"+parameter,"g");
+    return url.replace(regExp,"");
   }
 }
 
