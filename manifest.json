@@ -1,36 +1,36 @@
 {
-  "manifest_version": 2,
-  "name": "DebugJSON",
-  "description": "DebugJSON fordebugjson from backend data in company development",
-  "version": "2.0",
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html",
-    "default_title": "DebugJSON"
-  },
-  "background":{
-    "persistent":false,
-    "scripts":["background.js"]
-  },
-  "commands":{
-    "newdebug":{
-      "suggested_key":{
-        "default":"Alt+W"
-      },
-      "description":"新窗口查看/取消"
+    "manifest_version": 2,
+    "name": "DebugJSON",
+    "description": "DebugJSON fordebugjson from backend data in company development",
+    "version": "2.0",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "./html/popup.html",
+        "default_title": "DebugJSON"
     },
-    "thisdebug":{
-      "suggested_key":{
-        "default":"Alt+C"
-      },
-      "description":"本窗口查看/取消"
-    }
-  },
-  "icons":{
-    "16":"icon.png"
-  },
-  "permissions": [
-    "contextMenus",
-    "tabs"
-  ]
+    "background": {
+        "persistent": false,
+        "scripts": ["background.js"]
+    },
+    "commands": {
+        "newdebug": {
+            "suggested_key": {
+                "default": "Alt+W"
+            },
+            "description": "新窗口查看/取消"
+        },
+        "thisdebug": {
+            "suggested_key": {
+                "default": "Alt+C"
+            },
+            "description": "本窗口查看/取消"
+        }
+    },
+    "icons": {
+        "16": "icon.png"
+    },
+    "permissions": [
+        "contextMenus",
+        "tabs"
+    ]
 }

@@ -1,0 +1,74 @@
+body{
+	margin: 0;
+	font-family: Microsoft Yahei;
+	width: 350px;
+}
+p{
+	margin: 0;
+}
+nav{
+	display: flex;
+	border: 1px solid #3385ff;
+	border-left: none;
+	border-right: none;
+	font-size: 12px;
+	height: 21px;
+	line-height: 21px;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 7px;
+}
+.nav-item{
+	text-align: center;
+	border-right: 1px solid #3385ff;
+	flex:1;
+}
+.nav-item:last-child{
+	border-right: none;
+}
+.nav-item:hover,.nav-item.active{
+	color: #fff;
+	background: #3385ff;
+}
+.content-box{
+	padding: 10px 7px;
+}
+.intro-box{
+	font-size: 12px;
+	line-height: 1.75;
+}
+.query-param-box{
+	display: none;
+}
+.query-param-box .tips{
+	line-height: 1.75;
+	font-size: 12px;
+}
+#queryParam{
+	height: 25px;
+	line-height: 25px;
+	padding:0 7px;
+	font-size: 12px;
+	border: 1px solid #bbb;
+	box-sizing: border-box;
+	margin-top: 15px;
+	width: calc(100% - 55px)
+}
+#queryParam:focus{
+	outline: none;
+	border-color: #3385ff;
+}
+.confirm-btn{
+	display: inline-block;
+	float: right;
+	margin-top: 15px;
+	font-size: 12px;
+	cursor: pointer;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	width: 45px;
+	background-color: #3385ff;
+	color: #fff;
+	vertical-align: middle;
+}
