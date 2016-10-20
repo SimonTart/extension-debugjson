@@ -11,19 +11,29 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 
+function getParameters(callback) {
+    chrome.storage.local.get("parameters", function(obj) {
+        var parameters = obj.parameters || [];
+        callback(parameters);
+    });
+}
 //debug json in current window
 function debugThisWindow(tab) {
-    chrome.tabs.update(tab.id, {
-        url: urlUtils.getDebugUrl(tab.url, PARAMETERS)
+    getParameters(function(parameters) {
+        chrome.tabs.update(tab.id, {
+            url: urlUtils.getDebugUrl(tab.url, parameters)
+        });
     });
 }
 
 //debug json in new window
 function debugNewWindow(tab) {
-    chrome.tabs.create({
-        index: tab.index + 1,
-        url: urlUtils.getDebugUrl(tab.url, PARAMETERS),
-        active: true
+    getParameters(function(parameters) {
+        chrome.tabs.create({
+            index: tab.index + 1,
+            url: urlUtils.getDebugUrl(tab.url, parameters),
+            active: true
+        });
     });
 }
 
