@@ -156,5 +156,4 @@ chrome.commands.onCommand.addListener(function(command) {
             callback(tabs[0]);
         }
     });
-
 });
